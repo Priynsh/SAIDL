@@ -1,0 +1,31 @@
+day 1 :
+i read all the reading material given to me and wrote down a somewhat unclean code on how to implement a VAE
+i used the  codes given in oneof the reading material slides as reference for sampler and loss function
+i am using a simple two layered encoder 256 node hidden layer for now and latent layer w 5 nodes
+i am also currently barely doing any preprocessing, i just use the standard mnist set from keras and convert the brightness of the pixels to 0-1 instead of 0-255
+for 50 epochs i have the results attached they are somewhat legible
+optimizer in use is adam
+problems i ran into:
+there was some constant error with something not being a tensor in my sampler code, it got fixed after i update my keras ( or it could have been fixed when i tried to rewrite my entire code more neatly to try to fix this problem i dont know)
+also i couldn't figure out the code on how to plot the final data, so i looked up online and found a github repo that i used for reference 
+day 2:
+i read more about the kl loss function as i had implemented it earlier from the code given in the reading resources but didn't quite get it
+i applied the gaussian distribution (1,2) on the code and got some worse results, although i am not exactly sure as to what this implies [ need to read more :) ]  -> i think it is because in my plot for the latent space after training is centered at 0,0 and most dense in that area but if i sample w mean 1 it doesnt sample it from the dense part thus generating meaningless things if i sample from someplace which is less trained on
+i have attached the results from the gaussian distribution as well
+i also used most of my time to make a model class but i got into the same tensor problem again will try once more from the top tomorrow
+day 3:
+i have completed the structured class based implementation of my code
+now my next approach to make it better looking is to use cyclic annealing, in which we basically keep changing the regularization beta of KL loss with every epoch, i have mimicked a cosine function in this code
+i think this approach ended up w better results although not much better.
+day 4:
+I also read a paper that showed how it got slightly better results with blurring the images so i wrote a few line to implement that.
+evening - 
+i now got to know that we can't change model architecture - like i was doing earlier with annealing, blurring and orthogonal regularization (devastated)
+day 5:
+I started reading online on how to get better results if i change my underlying distribution and one thing that i had been looking past since the past two days was reparametrization.
+i watched a video, read some blogs about it and how by changing how i sample i could get better results.
+day 6:
+i implemented reparametrization in my latent sampling and immediately got better results, thus now it was time for finding the best hyperparameters and architecture.
+day 7 8 :
+i spent 3 days trying to find the best parameters and architecture and in the end was okayy with these results. (attached). But as i read online reparametrization wasn't somethingthat can be directly transferred to gamma distribution.
+i suspect some sort of aproximation might do the trick, but i don't have time to implement as midsems approach and i have 2 more tasks to complete.

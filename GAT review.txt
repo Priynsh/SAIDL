@@ -1,0 +1,20 @@
+Neural networks have been succesfully implemented to tackle problems where the underlying data is in a grid-like format. However these CNNs are not able to deal with irregular data represented using graphs.
+
+To apply neural networks on unstructured data - Graph neural networks were introduced. GNNs are optimizable transformations on all attributes of the graph while preserving structure. Aproaches with GNN - 
+
+Spectral approach leverages the structure relying on the laplacian matrix to approximate filters. Due to this it doesn't work with differently structured graphs and inductive learning.
+
+Non spectral approaches define convolutions directly on the graph, ensuring operations on spatially close neighbours.These approaches are versatile accros different graph structures making them suitable for both tranductive and inductive learning.
+
+This paper introduces a novel attention-based non-spectral approach, namely Graph Attention Networks (GAT).
+GAT multiplies the node features by a learnable weight matrix to obtain modified node features. Employs a shared attention mechanism to find attention coefficients by concatenating the modified node features of two neighbouring nodes and passing them through a neural network and then applying leakyrelu non linearity. Consequently, we normalise these attention coefficients using softmax.
+We multiply these coefficients with the modified node features and take a summation over the neighbourhood followed by a nonlinearity like sigmoid or softmax.
+To stabilize learning we can also use multiple attention mechanisms and average the final values before applying non-linearity this is called multi-head attention.
+
+Computationally efficient, GATs parallelize the self-attentional layer operation across all edges.
+The effectiveness of the learned feature representations may also be investigated qualitatively by visualising the t-SNE-transformed feature representations extracted by the first layer of a GAT model.
+
+Future work should focus on addressing these practical challenges like redundant computation due to overlapping neighborhoods and extending the approach to graph classification, as well as incorporating edge features.
+
+
+
